@@ -4,28 +4,42 @@ import pytest
 import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from config.test_config import TestConfig
 
 
-# set up webdriver fixture
-@pytest.fixture(scope='session')
-def selenium_driver(request):
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
+# # set up webdriver fixture
+# @pytest.fixture(scope='class')
+# def selenium_driver(request):
+#     chrome_options = Options()
+#     chrome_options.add_argument('--headless')
+#     chrome_options.add_argument('--no-sandbox')
+#     chrome_options.add_argument('--disable-dev-shm-usage')
+#
+#     driver = webdriver.Chrome(options=chrome_options)
+#     driver.set_window_size(1920, 1080)
+#     driver.maximize_window()
+#     driver.implicitly_wait(5)
+#
+#     yield driver
+#     driver.quit()
 
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.set_window_size(1920, 1080)
+
+@pytest.fixture(scope="class")
+def init_driver(request):
+    """
+    """
+    driver = webdriver.Chrome(executable_path=TestConfig.CHROME_EXECUTABLE_PATH)
     driver.maximize_window()
-    driver.implicitly_wait(5)
-
-    yield driver
+    request.cls.driver = driver
+    yield
     driver.quit()
 
 
 # set up a hook to be able to check if a test has failed
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
+    """
+    """
     # execute all other hooks to obtain the report object
     outcome = yield
     rep = outcome.get_result()
@@ -46,7 +60,7 @@ def test_failed_check(request):
         print("setting up a test failed!", request.node.nodeid)
     elif request.node.rep_setup.passed:
         if request.node.rep_call.failed:
-            driver = request.node.funcargs['selenium_driver']
+            driver = request.node.funcargs['init_driver']
             take_screenshot(driver, request.node.nodeid)
             print("executing test failed", request.node.nodeid)
 
