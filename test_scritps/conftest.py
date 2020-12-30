@@ -31,7 +31,7 @@ def init_driver(request):
     driver = webdriver.Chrome(executable_path=TestConfig.CHROME_EXECUTABLE_PATH)
     driver.maximize_window()
     request.cls.driver = driver
-    yield
+    yield driver
     driver.quit()
 
 
@@ -65,8 +65,11 @@ def test_failed_check(request):
             print("executing test failed", request.node.nodeid)
 
 
-# make a screenshot with a name of the test, date and time
 def take_screenshot(driver, nodeid):
     time.sleep(1)
-    file_name = f'{nodeid}_{datetime.today().strftime("%Y-%m-%d_%H:%M")}.png'.replace("/","_").replace("::","__")
-    driver.save_screenshot(file_name)
+    file_name = f'{nodeid}_{datetime.today().strftime("%Y_%m_%d_%H_%M")}.png'
+    file_name = file_name.replace(".py", "")
+    file_name = file_name.replace("/","_")
+    file_name = file_name.replace("::","__")
+    print("Filename: {}".format(file_name))
+    driver.save_screenshot('screenshots/' + file_name)

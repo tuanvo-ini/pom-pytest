@@ -11,7 +11,7 @@ class LoginPage(BasePage):
         self.driver.get(TestConfig.LOGIN_PAGE_URL)
 
     def get_login_page_title(self):
-        return self.driver.get_title()
+        return self.get_title("Administator Login")
 
     def do_login(self, username, password):
         self.do_send_keys(self.login_web_elements.email, username)
