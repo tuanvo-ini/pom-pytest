@@ -17,6 +17,13 @@ class BasePage:
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
         return element.text
 
-    def get_title(self, title):
+    def is_title_visible(self, title):
         WebDriverWait(self.driver, 10).until(EC.title_is(title))
+        return bool(self.driver.title)
+
+    def get_page_title(self):
         return self.driver.title
+
+    def get_attribute_by_value(self, by_locator):
+        element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
+        return element.get_attribute("value")

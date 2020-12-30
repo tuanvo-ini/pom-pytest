@@ -1,0 +1,8 @@
+account_type = '//input[@placeholder="Account Type"]'
+first_name = '//input[@placeholder="First name"]'
+last_name = '//div[normalize-space(@class)="form-group"]/input[@placeholder="Last name"]'
+email = '//input[@name="email"]'
+password = '//input[@name="password"]'
+mobile_number = '//input[@name="mobile"]'
+country = '//span[@class="select2-chosen"]'
+submit_button = '//div[@class="panel-footer"]/button'

@@ -1,6 +1,7 @@
 from libraries.BasePage import BasePage
 from libraries.LoginPage import web_elements
 from config.test_config import TestConfig
+from selenium.webdriver.common.by import By
 
 
 class LoginPage(BasePage):
@@ -14,7 +15,7 @@ class LoginPage(BasePage):
         return self.get_title("Administator Login")
 
     def do_login(self, username, password):
-        self.do_send_keys(self.login_web_elements.email, username)
-        self.do_send_keys(self.login_web_elements.password, password)
-        self.do_click(self.login_web_elements.submit_button)
+        self.do_send_keys((By.XPATH, self.login_web_elements.email), username)
+        self.do_send_keys((By.XPATH, self.login_web_elements.password), password)
+        self.do_click((By.XPATH, self.login_web_elements.submit_button))
 

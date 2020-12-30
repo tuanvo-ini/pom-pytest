@@ -7,3 +7,5 @@ class DashBoardPage(BasePage):
         super().__init__(driver)
         self.dashboard_web_elements = web_elements
 
+    def get_dashboard_page_title(self):
+        return self.get_page_title()

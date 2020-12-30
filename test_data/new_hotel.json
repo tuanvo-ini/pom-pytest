@@ -1,0 +1,24 @@
+{
+  "hotel": {
+    "name": "Tuan Vo",
+    "description": "Tuan's hotel",
+    "address": "3 Vo Chi Cong street, Saigon Hi-Tech Park, District 9, Ho Chi Minh city",
+    "status": "Enabled",
+    "stars": "3",
+    "type": "Hotel",
+    "featured": {
+      "is_featured": "Yes",
+      "from": "1/1/2020",
+      "to": "31/12/2020"
+    },
+    "location": "Ho Chi Minh City",
+    "deposit": {
+      "type": "Percentage",
+      "value": "30"
+    },
+    "vat_tax": {
+      "type": "Percentage",
+      "value": "10"
+    }
+  }
+}
