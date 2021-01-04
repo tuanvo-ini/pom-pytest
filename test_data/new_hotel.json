@@ -1,4 +1,14 @@
 {
+  "account": {
+    "url": "https://www.phptravels.net/admin",
+    "account_type": "Super Admin",
+    "first_name": "Super",
+    "last_name": "Admin",
+    "email": "admin@phptravels.com",
+    "password": "demoadmin",
+    "mobile_number": "123456789",
+    "country": "United States"
+  },
   "hotel": {
     "name": "Tuan Vo",
     "description": "Tuan's hotel",

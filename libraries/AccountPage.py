@@ -1,11 +1,11 @@
 from libraries.BasePage import BasePage
-from libraries.AccountPage import web_elements
+from web_elements import account_page
 
 
 class AccountPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
-        self.account_web_elements = web_elements
+        self.account_web_elements = account_page
 
     def get_account_page_title(self):
         return self.get_page_title()

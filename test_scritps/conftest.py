@@ -30,6 +30,7 @@ def init_driver(request):
     """
     driver = webdriver.Chrome(executable_path=TestConfig.CHROME_EXECUTABLE_PATH)
     driver.maximize_window()
+    driver.get(TestConfig.LOGIN_PAGE_URL)
     request.cls.driver = driver
     yield driver
     driver.quit()
