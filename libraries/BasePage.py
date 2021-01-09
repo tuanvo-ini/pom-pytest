@@ -2,6 +2,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
 
 class BasePage:
@@ -24,8 +25,10 @@ class BasePage:
         return bool(self.driver.title)
 
     def is_visible(self, by_locator):
+        if isinstance(by_locator, str):
+            by_locator = (By.XPATH, by_locator)
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
-        return bool(element)
+        return element.is_displayed()
 
     def get_page_title(self):
         return self.driver.title

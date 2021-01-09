@@ -13,9 +13,9 @@ class TestHotelPage(BaseTest):
         login_page = LoginPage(self.driver)
         login_page.do_login(self.test_data["account"]["email"], self.test_data["account"]["password"])
 
-    def teardown_method(self):
-        dashboard_page = DashBoardPage(self.driver)
-        dashboard_page.do_click_logout_button()
+    # def teardown_method(self):
+    #     dashboard_page = DashBoardPage(self.driver)
+    #     dashboard_page.do_click_logout_button()
 
     def test_add_new_hotel(self):
         hotel_page = HotelPage(self.driver)
@@ -35,16 +35,16 @@ class TestHotelPage(BaseTest):
         hotel_page.do_select_hotel_status(self.test_data["hotel"]["status"])
         hotel_page.do_select_hotel_star(self.test_data["hotel"]["stars"])
         hotel_page.do_select_type(self.test_data["hotel"]["type"])
-        hotel_page.do_config_featured(self.test_data["hotel"]["featured"]["from"],\
-                                      self.test_data["hotel"]["featured"]["to"],\
+        hotel_page.do_config_featured(self.test_data["hotel"]["featured"]["from"],
+                                      self.test_data["hotel"]["featured"]["to"],
                                       self.test_data["hotel"]["featured"]["is_featured"])
-        hotel_page.do_config_deposit(self.test_data["hotel"]["deposit"]["type"],\
+        hotel_page.do_config_deposit(self.test_data["hotel"]["deposit"]["type"],
                                      self.test_data["hotel"]["deposit"]["value"])
-        hotel_page.do_config_vat_tax(self.test_data["hotel"]["vat_tax"]["type"],\
+        hotel_page.do_config_vat_tax(self.test_data["hotel"]["vat_tax"]["type"],
                                      self.test_data["hotel"]["vat_tax"]["value"])
         hotel_page.enter_hotel_location(self.test_data["hotel"]["location"])
         hotel_page.enter_hotel_description(self.test_data["hotel"]["description"])
         hotel_page.do_submit_button()
 
         # Verify a new hotel is created successfully
-        new_hotel = hotel_page.verify_new_hotel_is_created(self.test_data["hotel"]["name"])
+        assert hotel_page.verify_new_hotel_is_created(self.test_data["hotel"]["name"])

@@ -4,7 +4,7 @@ add_button = (By.XPATH, '//button[@type="submit"]')
 
 # Elements in Add page
 name = (By.XPATH, '//input[@name="hotelname"]')
-description = '//div[@id="cke_1_contents"]//iframe[contains(@class, "cke_reset")]'
+description = (By.XPATH, '//body')
 # description = (By.XPATH, '//iframe[@title="Rich Text Editor, hoteldesc"]')
 map_address = (By.XPATH, '//input[@id="mapaddress"]')
 latitude = (By.XPATH, '//input[@id="latitude"]')
@@ -25,4 +25,4 @@ deposit_value = (By.XPATH, '//input[@name="depositvalue"]')
 vat_tax_type = (By.XPATH, '//select[@name="taxtype"]')
 vat_tax_value = (By.XPATH, '//input[@name="taxvalue"]')
 
-new_hotel = (By.XPATH, '//a[contains(., "{}")]')
+new_hotel = '//a[contains(., "{}")]'

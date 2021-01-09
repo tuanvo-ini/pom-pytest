@@ -7,28 +7,16 @@ from selenium.webdriver.chrome.options import Options
 from config.test_config import TestConfig
 
 
-# # set up webdriver fixture
-# @pytest.fixture(scope='class')
-# def selenium_driver(request):
-#     chrome_options = Options()
-#     chrome_options.add_argument('--headless')
-#     chrome_options.add_argument('--no-sandbox')
-#     chrome_options.add_argument('--disable-dev-shm-usage')
-#
-#     driver = webdriver.Chrome(options=chrome_options)
-#     driver.set_window_size(1920, 1080)
-#     driver.maximize_window()
-#     driver.implicitly_wait(5)
-#
-#     yield driver
-#     driver.quit()
-
-
 @pytest.fixture(scope="class")
 def init_driver(request):
     """
     """
-    driver = webdriver.Chrome(executable_path=TestConfig.CHROME_EXECUTABLE_PATH)
+    chrome_options = Options()
+    # chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--no-sandbox')
+    # chrome_options.add_argument('--disable-dev-shm-usage')
+
+    driver = webdriver.Chrome(options=chrome_options, executable_path=TestConfig.CHROME_EXECUTABLE_PATH)
     driver.maximize_window()
     driver.get(TestConfig.LOGIN_PAGE_URL)
     request.cls.driver = driver

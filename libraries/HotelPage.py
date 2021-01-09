@@ -17,11 +17,8 @@ class HotelPage(BasePage):
         self.do_send_keys(self.hotel_web_elements.name, hotel_name)
 
     def enter_hotel_description(self, desc):
-        desc_iframe = self.switch_to_iframe_text_box(self.hotel_web_elements.description)
-        # desc_iframe = self.driver.switch_to.frame(0)
-        # self.do_click(self.hotel_web_elements.description)
-        desc_iframe.send_keys(desc)
-        # self.do_send_keys(self.hotel_web_elements.description, desc)
+        self.driver.switch_to.frame(0)
+        self.do_send_keys(self.hotel_web_elements.description, desc)
         self.back_to_parent_frame()
 
     def do_select_hotel_status(self, option):

@@ -1,6 +1,7 @@
 import os
 import json
 import platform
+import subprocess
 from pathlib import Path
 
 
@@ -39,6 +40,25 @@ def parse_test_data(file_name):
     test_data = json.load(data_file)
     data_file.close()
     return test_data
+
+
+def install_package_by_pip(pkg_name):
+    print("Install package: {}".format(pkg_name))
+    p = subprocess.Popen("pip install {}".format(pkg_name), stdout=subprocess.PIPE, shell=True)
+    (output, err) = p.communicate()
+    print("Output: {}".format(output))
+    print("Error: {}\n".format(err))
+
+
+def install_required_packages(file_path):
+    file = open(file_path, 'r')
+    list_pkg = file.readlines()
+    for pkg in list_pkg:
+        if pkg.startswith("#"):
+            continue
+        install_package_by_pip(pkg)
+
+    file.close()
 
 
 if __name__ == "__main__":
